@@ -1,0 +1,4 @@
+#!/bin/sh
+echo compliance_ntp_file="false"
+echo compliance_sshd_config_file="false"
+echo compliance_resolv.conf_silca.conf_file="true"

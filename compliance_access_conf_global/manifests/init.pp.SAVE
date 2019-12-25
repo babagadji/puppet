@@ -1,0 +1,33 @@
+class compliance_access_conf_global ($just_check='true') {
+   require cagiplib
+   
+   if $facts['os']['family'] == 'RedHat' {
+     cagiplib::compliance_file { 'access':
+     modulename => "compliance_access_conf_global",
+     template_or_file => template,
+     filename   => "access.conf.erb",
+     filepath   => "/etc/security/access.conf",
+     just_check => $just_check,
+     }	  
+   }
+   elsif $facts['os']['family'] == 'Solaris' {
+     cagiplib::compliance_file { 'access':
+     modulename => "compliance_access_conf_global",
+     template_or_file => template,
+     filename   => "user.allow.erb",
+     filepath   => "/etc/user.allow",
+     just_check => $just_check,
+     }
+   }
+   elsif $facts['os']['familly'] == 'AIX' {
+   
+   }
+   else {
+     fail("${facts['operatingsystem']} is not supported!")
+   }
+
+}
+class compliance_access_conf_global {
+  class { 'compliance_access_conf_global::compliance_file_access': }
+	
+}
